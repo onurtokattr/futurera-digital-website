@@ -1,0 +1,296 @@
+"use client";
+
+import { createContext, useContext, useState, ReactNode } from "react";
+
+export type Lang = "tr" | "en";
+
+type Dict = Record<string, string>;
+
+const tr: Dict = {
+  loading: "EVREN YÜKLENİYOR",
+  nav_services: "Hizmetler",
+  nav_work: "Projeler",
+  nav_about: "Hakkımızda",
+  nav_reviews: "Yorumlar",
+  nav_contact: "İletişim",
+  nav_cta: "Projeni Başlat",
+
+  hero_eyebrow: "İNŞAAT & GAYRİMENKUL PAZARLAMA AJANSI",
+  hero_l1: "Projelerinizi",
+  hero_l2: "satışa dönüştürüyoruz",
+  hero_l3: "",
+  hero_lead:
+    "Konut projeleri, şantiyeler ve gayrimenkul markaları için niş dijital pazarlama: lansman kampanyaları, 3D görselleştirme ve satış odaklı reklam.",
+  hero_cta1: "Projeni Başlat",
+  hero_cta2: "Projeleri Gör",
+  hero_scroll: "KAYDIR",
+  stat1: "Teslim Edilen Konut Projesi",
+  stat2: "Ortalama Lansman Doluluğu",
+  stat3: "İnşaat & Emlak Markası",
+
+  hb1: "Lansman",
+  hb2: "3D Render",
+  hb3: "Şantiye İçeriği",
+  hb4: "CRM & Satış",
+  card_camp: "Lansman Performansı",
+  card_reach: "Toplam Erişim",
+  card_reach_sub: "Son 30 günde bölgedeki hedef kitleye ulaşım",
+  card_roas: "ROAS",
+  card_roas_sub: "Reklam harcamasının satışa dönüşü",
+  card_conv: "Ön Talep",
+  card_cpl: "Talep Başı Maliyet",
+
+  clients_head: "40+ inşaat ve gayrimenkul markası bize güveniyor",
+
+  band_1: "İNŞAAT",
+  band_2: "GAYRİMENKUL",
+  band_3: "LANSMAN",
+  band_4: "3D RENDER",
+  band_5: "SATIŞ",
+
+  feat_eyebrow: "SEKTÖRE ÖZEL ARAÇLAR",
+  feat_title: "İnşaat sektörüne özel pazarlama sistemi",
+  feat_lead:
+    "Genel geçer ajans çözümleri değil; konut lansmanı, şantiye tanıtımı ve satış ofisi süreçlerine özel kurulmuş bir sistem.",
+  feat1_t: "Lansman Öncesi Talep Toplama",
+  feat1_d: "Proje daha temeli atılmadan bölgesel hedefleme ile ön talep listesi ve rezervasyon havuzu oluşturuyoruz.",
+  feat1_cta: "Lansmanını Planla",
+  feat2_t: "Satış Ofisi CRM Entegrasyonu",
+  feat2_d: "Gelen talepler doğrudan satış ekibinize düşer; hiçbir potansiyel müşteri takipsiz kalmaz.",
+  feat2_k1: "Ort. Doluluk",
+  feat2_k2: "Memnuniyet",
+  feat2_k3: "Canlı Destek",
+  feat3_t: "Bölgesel Hedefleme",
+  feat3_d: "Projenin çevresindeki gerçek alıcı kitlesine, çevrim içi ve saha bazlı hassas hedefleme.",
+  feat4_t: "Şeffaf Satış Raporlaması",
+  feat4_d: "Talep, ziyaret ve satış verilerini haftalık net raporlarla satış ekibinizle paylaşıyoruz.",
+  feat5_t: "Uçtan Uca Proje Yönetimi",
+  feat5_d: "Kazık çakımından teslim gününe kadar tüm pazarlama süreci tek elden yönetilir.",
+
+  serv_eyebrow: "NE YAPIYORUZ",
+  serv_title: "İnşaat & gayrimenkul için 4 uzman hizmet",
+  serv_lead:
+    "Bir dijital pazarlama ajansı değil; inşaat ve gayrimenkul sektörüne odaklanmış bir satış büyüme ortağıyız.",
+  s1_name: "Proje Lansman Pazarlaması",
+  s1_desc: "Kazık çakımından teslim gününe; talep toplama, satış ofisi kampanyası ve bölgesel reklam stratejisi.",
+  s2_name: "3D Görselleştirme & Sanal Tur",
+  s2_desc: "Henüz inşa edilmemiş daireleri, villaları ve site alanlarını fotogerçekçi 3D render ve sanal turlarla satışa hazırlıyoruz.",
+  s3_name: "Şantiye & İnşaat İçerik Üretimi",
+  s3_desc: "İnşaat sürecini drone çekimleri, ilerleme videoları ve sosyal medya içerikleriyle güven inşa eden bir hikâyeye dönüştürüyoruz.",
+  s4_name: "Satış Ofisi Otomasyonu & CRM",
+  s4_desc: "Gelen her talebi satış ekibine anında ileten, potansiyel müşteriyi kaybetmeyen otomasyon sistemleri kuruyoruz.",
+
+  work_eyebrow: "SEÇİLİ PROJELER",
+  work_title: "İnşaat & gayrimenkul projeleri",
+  work_lead: "Konut, resort ve ticari projelerde birlikte çalıştığımız markalar. Görseller referanslarınla güncellenecek.",
+  work_p1_t: "Hat Naturel",
+  work_p1_c: "Resort Projesi · Lansman & Reklam",
+  work_p2_t: "Via Vita",
+  work_p2_c: "Karma Kullanım Projesi · Satış Ofisi Kampanyası",
+  work_p3_t: "AtaShading",
+  work_p3_c: "Peyzaj & Ortak Alan · 3D Görselleştirme",
+  work_p4_t: "Simple Deal × Futurera",
+  work_p4_c: "İç Mimari Konsept · Sanal Tur",
+  work_p5_t: "Modüler Fence",
+  work_p5_c: "Mimari Sistem · Ürün Pazarlaması",
+  work_p6_t: "Başak Çit",
+  work_p6_c: "İnşaat Ürünleri · Bayi Ağı Pazarlaması",
+
+  about_eyebrow: "BİZ KİMİZ",
+  about_title: "İnşaat sektörüne odaklı niş pazarlama ekibi",
+  about_p1:
+    "Futurera Digital, genel bir dijital ajans değil; sadece inşaat ve gayrimenkul markalarıyla çalışan uzmanlaşmış bir büyüme ortağıdır.",
+  about_p2:
+    "İmar süreçlerinden satış ofisi operasyonuna, konut lansmanından teslim sonrası referans pazarlamasına kadar bu sektörün diline hâkimiz. Her proje bizim için ölçülebilir bir satış hedefidir.",
+  about_m1: "Yıl Sektör Deneyimi",
+  about_m2: "İnşaat & Emlak Uzmanı",
+  about_m3: "Yönetilen Lansman Bütçesi",
+  about_m4: "Satış Ofisi Memnuniyeti",
+
+  rev_eyebrow: "MÜŞTERİ TAKIMYILDIZI",
+  rev_title: "Bizimle çalışan inşaat markaları",
+  rev_lead: "Birlikte satış hedefine ulaştığımız projelerin sözleri. Gerçek yorumlar referanslarınla eklenecek.",
+  rev1: "Lansman öncesi topladıkları talep listesi sayesinde satışa çıktığımız ilk hafta dairelerin yarısı rezerve oldu.",
+  rev2: "3D görselleştirme ve sanal tur çalışmaları, henüz temeli atılmamış projeyi satış ofisinde gerçekmiş gibi anlatmamızı sağladı.",
+  rev3: "Şantiye içerikleri sayesinde alıcılarımız süreci canlı takip etti, güven ve satış hızı belirgin şekilde arttı.",
+  rev_role: "Proje Satış Müdürü",
+
+  cta_eyebrow: "PROJENİ FIRLAT",
+  cta_title: "Projeni satışa hazırlayalım",
+  cta_lead: "Konut, resort veya ticari projeni anlat; lansman ve satış stratejini birlikte kuralım. 24 saat içinde dönüş yapıyoruz.",
+  cta_p1: "E-posta",
+  cta_p2: "Telefon",
+  cta_p3: "Ofis",
+  cta_p3v: "İstanbul, Türkiye",
+  f_company: "Şirket / Proje Adı",
+  f_person: "İletişim Kişisi",
+  f_email: "E-posta",
+  f_phone: "Telefon",
+  f_type: "Proje Tipi",
+  f_type_o1: "Konut Projesi Lansmanı",
+  f_type_o2: "3D Görselleştirme & Sanal Tur",
+  f_type_o3: "Şantiye & İçerik Üretimi",
+  f_type_o4: "Satış Ofisi CRM & Otomasyon",
+  f_budget: "Bütçe Aralığı",
+  f_details: "Proje Detayı",
+  f_details_ph: "Proje tipini, konumunu ve daire/ünite sayısını bize anlat...",
+  f_submit: "Projeni Fırlat",
+  f_success: "✓ Talebin ulaştı! En kısa sürede sana döneceğiz.",
+
+  foot_tag: "İnşaat ve gayrimenkul projelerini satışa taşıyan niş dijital pazarlama ajansı.",
+  foot_c1: "Hizmetler",
+  foot_c2: "Kurumsal",
+  foot_c3: "İletişim",
+  foot_rights: "Tüm hakları saklıdır.",
+};
+
+const en: Dict = {
+  loading: "LOADING THE UNIVERSE",
+  nav_services: "Services",
+  nav_work: "Work",
+  nav_about: "About",
+  nav_reviews: "Reviews",
+  nav_contact: "Contact",
+  nav_cta: "Start a Project",
+
+  hero_eyebrow: "CONSTRUCTION & REAL ESTATE MARKETING AGENCY",
+  hero_l1: "We turn your projects",
+  hero_l2: "into sold-out launches",
+  hero_l3: "",
+  hero_lead:
+    "Niche digital marketing for residential developments, construction sites and real estate brands — launch campaigns, 3D visualization and sales-driven ads.",
+  hero_cta1: "Start Your Project",
+  hero_cta2: "View Work",
+  hero_scroll: "SCROLL",
+  stat1: "Residential Projects Delivered",
+  stat2: "Average Launch Occupancy",
+  stat3: "Construction & Real Estate Brands",
+
+  hb1: "Launch",
+  hb2: "3D Render",
+  hb3: "Site Content",
+  hb4: "CRM & Sales",
+  card_camp: "Launch Performance",
+  card_reach: "Total Reach",
+  card_reach_sub: "Local buyers reached in the last 30 days",
+  card_roas: "ROAS",
+  card_roas_sub: "Return on ad spend into sales",
+  card_conv: "Pre-Sale Leads",
+  card_cpl: "Cost per Lead",
+
+  clients_head: "Trusted by 40+ construction & real estate brands",
+
+  band_1: "CONSTRUCTION",
+  band_2: "REAL ESTATE",
+  band_3: "LAUNCH",
+  band_4: "3D RENDER",
+  band_5: "SALES",
+
+  feat_eyebrow: "INDUSTRY-SPECIFIC TOOLS",
+  feat_title: "A marketing system built for construction",
+  feat_lead:
+    "Not generic agency playbooks — a system engineered for residential launches, site marketing and sales-office operations.",
+  feat1_t: "Pre-Launch Lead Generation",
+  feat1_d: "We build a pre-registration pool of buyers with local targeting before the first brick is laid.",
+  feat1_cta: "Plan Your Launch",
+  feat2_t: "Sales Office CRM Integration",
+  feat2_d: "Every inbound lead lands directly with your sales team — no prospect ever falls through the cracks.",
+  feat2_k1: "Avg. Occupancy",
+  feat2_k2: "Satisfaction",
+  feat2_k3: "Live Support",
+  feat3_t: "Hyperlocal Targeting",
+  feat3_d: "Precision targeting — online and on-site — reaching the real buyer pool around your development.",
+  feat4_t: "Transparent Sales Reporting",
+  feat4_d: "Weekly reports on leads, site visits and sales, shared directly with your sales office.",
+  feat5_t: "End-to-End Project Management",
+  feat5_d: "From groundbreaking to handover day, the entire marketing process managed in one place.",
+
+  serv_eyebrow: "WHAT WE DO",
+  serv_title: "4 specialist services for construction & real estate",
+  serv_lead:
+    "We're not a generalist digital agency — we're a sales growth partner focused solely on construction and real estate.",
+  s1_name: "Project Launch Marketing",
+  s1_desc: "From groundbreaking to handover — lead generation, sales-office campaigns and local ad strategy.",
+  s2_name: "3D Visualization & Virtual Tours",
+  s2_desc: "We sell units before they're built with photorealistic 3D renders and immersive virtual tours.",
+  s3_name: "Site & Construction Content",
+  s3_desc: "Drone footage, progress videos and social content that turn the build process into a trust-building story.",
+  s4_name: "Sales Office CRM & Automation",
+  s4_desc: "Automation systems that route every lead straight to your sales team — never lose a prospect again.",
+
+  work_eyebrow: "SELECTED PROJECTS",
+  work_title: "Construction & real estate projects",
+  work_lead: "Residential, resort and commercial developments we've partnered with. Visuals will be updated with your references.",
+  work_p1_t: "Hat Naturel",
+  work_p1_c: "Resort Development · Launch & Ads",
+  work_p2_t: "Via Vita",
+  work_p2_c: "Mixed-Use Development · Sales Office Campaign",
+  work_p3_t: "AtaShading",
+  work_p3_c: "Landscape & Common Areas · 3D Visualization",
+  work_p4_t: "Simple Deal × Futurera",
+  work_p4_c: "Interior Concept · Virtual Tour",
+  work_p5_t: "Modüler Fence",
+  work_p5_c: "Architectural System · Product Marketing",
+  work_p6_t: "Başak Çit",
+  work_p6_c: "Construction Products · Dealer Network Marketing",
+
+  about_eyebrow: "WHO WE ARE",
+  about_title: "A niche team built for construction marketing",
+  about_p1:
+    "Futurera Digital isn't a generalist agency — we're a specialized growth partner working exclusively with construction and real estate brands.",
+  about_p2:
+    "From zoning and permits to sales-office operations, from launch day to post-handover referral marketing — we speak the language of this industry. Every project is a measurable sales target to us.",
+  about_m1: "Years in the Industry",
+  about_m2: "Construction & Real Estate Specialists",
+  about_m3: "Launch Budget Managed",
+  about_m4: "Sales Office Satisfaction",
+
+  rev_eyebrow: "CLIENT CONSTELLATION",
+  rev_title: "Developers who work with us",
+  rev_lead: "Words from the projects we've helped sell out. Real reviews will be added with your references.",
+  rev1: "Thanks to the pre-launch lead list they built, half the units were reserved in the first week of sales.",
+  rev2: "Their 3D visualization and virtual tour work let us sell a project that hadn't broken ground yet as if it were real.",
+  rev3: "The site content let buyers follow the build live — trust and sales velocity both went up noticeably.",
+  rev_role: "Project Sales Director",
+
+  cta_eyebrow: "LAUNCH YOUR PROJECT",
+  cta_title: "Let's get your project sale-ready",
+  cta_lead: "Tell us about your residential, resort or commercial project — we'll build the launch and sales strategy together. We reply within 24 hours.",
+  cta_p1: "Email",
+  cta_p2: "Phone",
+  cta_p3: "Office",
+  cta_p3v: "Istanbul, Türkiye",
+  f_company: "Company / Project Name",
+  f_person: "Contact Person",
+  f_email: "Email",
+  f_phone: "Phone",
+  f_type: "Project Type",
+  f_type_o1: "Residential Project Launch",
+  f_type_o2: "3D Visualization & Virtual Tour",
+  f_type_o3: "Site & Content Production",
+  f_type_o4: "Sales Office CRM & Automation",
+  f_budget: "Budget Range",
+  f_details: "Project Details",
+  f_details_ph: "Tell us the project type, location and number of units...",
+  f_submit: "Launch Project",
+  f_success: "✓ Your request has landed! We'll get back to you shortly.",
+
+  foot_tag: "The niche digital marketing agency turning construction and real estate projects into sold-out launches.",
+  foot_c1: "Services",
+  foot_c2: "Company",
+  foot_c3: "Contact",
+  foot_rights: "All rights reserved.",
+};
+
+const dicts: Record<Lang, Dict> = { tr, en };
+
+type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (k: string) => string };
+const I18nContext = createContext<Ctx>({ lang: "tr", setLang: () => {}, t: (k) => k });
+
+export function I18nProvider({ children }: { children: ReactNode }) {
+  const [lang, setLang] = useState<Lang>("tr");
+  const t = (k: string) => dicts[lang][k] ?? k;
+  return <I18nContext.Provider value={{ lang, setLang, t }}>{children}</I18nContext.Provider>;
+}
+
+export const useI18n = () => useContext(I18nContext);
