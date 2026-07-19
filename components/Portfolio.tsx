@@ -33,7 +33,7 @@ export default function Portfolio() {
         </div>
 
         <div className="portfolio-grid">
-          {/* Featured — real project */}
+          {/* Featured — Delmare */}
           <Reveal className="proj span-12 feature">
             <img className="proj-photo" src="/work/delmare.jpg" alt="Delmare Collection" loading="lazy" />
             <div className="proj-meta">
@@ -45,6 +45,24 @@ export default function Portfolio() {
                   <em>{t("work_feat_g1")}</em>
                   <em>{t("work_feat_g2")}</em>
                   <em>{t("work_feat_g3")}</em>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Featured — Vema Tuzla */}
+          <Reveal className="proj span-12 feature">
+            <img className="proj-photo" src="/work/vema.jpg" alt="Vema Tuzla" loading="lazy" />
+            <div className="proj-meta">
+              <div>
+                <span className="proj-badge">{t("work_vema_badge")}</span>
+                <h3>{t("work_vema_t")}</h3>
+                <span className="proj-c">{t("work_vema_c")}</span>
+                <div className="proj-tags">
+                  <em>{t("work_vema_g1")}</em>
+                  <em>{t("work_vema_g2")}</em>
+                  <em>{t("work_vema_g3")}</em>
+                  <em>{t("work_vema_g4")}</em>
                 </div>
               </div>
             </div>
