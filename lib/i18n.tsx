@@ -169,6 +169,8 @@ const tr: Dict = {
   work_p6_c: "İnşaat Ürünleri · Bayi Ağı Pazarlaması",
   work_merv_t: "MervMix",
   work_merv_c: "Doğal Takviye Markası · Ürün İçeriği & Sosyal Medya",
+  work_teoman_t: "Prof. Dr. Teoman Yanmaz",
+  work_teoman_c: "Tıbbi Onkoloji Uzmanı · Sosyal Medya & Meta Yönetimi",
 
   about_eyebrow: "BİZ KİMİZ",
   about_title: "İnşaat sektörüne odaklı niş pazarlama ekibi",
@@ -381,6 +383,8 @@ const en: Dict = {
   work_p6_c: "Construction Products · Dealer Network Marketing",
   work_merv_t: "MervMix",
   work_merv_c: "Natural Supplement Brand · Product Content & Social Media",
+  work_teoman_t: "Prof. Dr. Teoman Yanmaz",
+  work_teoman_c: "Medical Oncology Specialist · Social Media & Meta Ads",
 
   about_eyebrow: "WHO WE ARE",
   about_title: "A niche team built for construction marketing",
