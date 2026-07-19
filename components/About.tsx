@@ -43,8 +43,8 @@ const PILLARS = [
 
 const METRICS = [
   { n: 8, prefix: "", suffix: "+", k: "about_m1" },
-  { n: 12, prefix: "", suffix: "", k: "about_m2" },
-  { n: 10, prefix: "₺", suffix: "M+", k: "about_m3" },
+  { n: 4, prefix: "", suffix: "", k: "about_m2" },
+  { n: 100, prefix: "", suffix: "M+ TL", k: "about_m3" },
   { n: 98, prefix: "%", suffix: "", k: "about_m4" },
 ];
 
