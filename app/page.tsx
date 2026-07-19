@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Cursor from "@/components/Cursor";
+import ScrollTop from "@/components/ScrollTop";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Clients from "@/components/Clients";
@@ -36,6 +37,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <ScrollTop />
     </>
   );
 }

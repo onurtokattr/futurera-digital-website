@@ -760,6 +760,34 @@ h2.display { font-size: clamp(2.1rem, 4.6vw, 3.9rem); }
 .bform { border: 1px solid var(--border); border-radius: 12px; padding: 14px; background: rgba(255, 255, 255, 0.02); }
 .bnote { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.16em; color: var(--dim-2); }
 
+/* ===== Scroll-to-top ===== */
+.scrolltop {
+  position: fixed;
+  right: 28px; bottom: 28px;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: linear-gradient(160deg, rgba(26, 35, 126, 0.5), rgba(9, 12, 42, 0.9));
+  backdrop-filter: blur(10px);
+  color: var(--gold-2);
+  cursor: pointer;
+  z-index: 60;
+  box-shadow: 0 16px 40px -14px rgba(0, 0, 0, 0.8);
+  transition: border-color 0.4s, box-shadow 0.4s, color 0.4s;
+}
+.scrolltop:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+  color: var(--cream);
+  box-shadow: 0 20px 46px -14px rgba(212, 175, 55, 0.4);
+}
+.scrolltop .st-ring { position: absolute; inset: 0; width: 100%; height: 100%; }
+.scrolltop .st-arrow { position: relative; width: 20px; height: 20px; }
+html.has-cursor .scrolltop { cursor: none; }
+@media (max-width: 640px) {
+  .scrolltop { right: 18px; bottom: 18px; width: 46px; height: 46px; }
+}
+
 /* ===== Services ===== */
 .services-list { border-top: 1px solid var(--border); }
 .srow {
