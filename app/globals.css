@@ -817,6 +817,7 @@ h2.display { font-size: clamp(2.1rem, 4.6vw, 3.9rem); }
 .proj.span-7 { grid-column: span 7; }
 .proj.span-5 { grid-column: span 5; }
 .proj.span-6 { grid-column: span 6; }
+.proj.span-4 { grid-column: span 4; }
 .proj.span-12 { grid-column: span 12; }
 .proj.tall { min-height: 400px; }
 .proj.feature { min-height: 460px; }
@@ -1057,7 +1058,7 @@ html.has-cursor .srow {
   .bento .bcard, .bcard.b7, .bcard.b5, .bcard.b4 { grid-column: span 12; }
   .about-grid, .cta-banner { grid-template-columns: 1fr; gap: 40px; }
   .testi-grid { grid-template-columns: 1fr; }
-  .proj.span-7, .proj.span-5, .proj.span-6 { grid-column: span 12; }
+  .proj.span-7, .proj.span-5, .proj.span-6, .proj.span-4 { grid-column: span 12; }
 }
 @media (max-width: 760px) {
   .container { padding: 0 20px; }
