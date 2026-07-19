@@ -945,28 +945,45 @@ form.panel .btn { grid-column: 1 / -1; justify-content: center; }
 .panel-step { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-2); }
 .panel-head::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(212,175,55,0.4), transparent); }
 
-/* option chips (replaces native selects) */
-.chips { display: flex; flex-wrap: wrap; gap: 9px; }
-.chips.seg { gap: 8px; }
-.chip {
-  position: relative;
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 11px 16px; border-radius: 12px;
+/* custom dropdown (styled select that opens a list) */
+.dd { position: relative; }
+.dd-trigger {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: rgba(5, 6, 26, 0.7);
   border: 1px solid var(--border-2);
-  background: rgba(5, 6, 26, 0.6);
-  color: var(--dim);
-  font-family: inherit; font-size: 0.88rem; cursor: pointer;
-  transition: color 0.3s, border-color 0.3s, background 0.3s, transform 0.3s var(--ease);
+  border-radius: 12px;
+  padding: 13px 15px;
+  color: var(--white);
+  font-family: inherit; font-size: 0.95rem; text-align: left; cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
-.chips.seg .chip { flex: 1; justify-content: center; white-space: nowrap; }
-.chip:hover { color: var(--cream); border-color: rgba(212, 175, 55, 0.4); transform: translateY(-1px); }
-.chip.on {
-  color: #10132f; font-weight: 600; border-color: transparent;
-  background: linear-gradient(135deg, var(--gold), var(--gold-2));
-  box-shadow: 0 8px 22px -10px rgba(212, 175, 55, 0.7);
+.dd-trigger.ph { color: rgba(245, 234, 211, 0.34); }
+.dd-trigger:hover { border-color: rgba(212, 175, 55, 0.45); }
+.dd.open .dd-trigger { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.14); }
+.dd-caret { width: 18px; height: 18px; flex-shrink: 0; color: var(--gold-2); transition: transform 0.3s var(--ease); }
+.dd.open .dd-caret { transform: rotate(180deg); }
+.dd-list {
+  position: absolute; z-index: 20; top: calc(100% + 8px); left: 0; right: 0;
+  list-style: none; margin: 0; padding: 6px;
+  background: rgba(9, 12, 42, 0.98);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 14px;
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(14px);
 }
-.chip-tick { font-size: 0.72rem; font-weight: 700; }
-html.has-cursor .chip { cursor: none; }
+.dd-opt {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 12px 13px; border-radius: 9px;
+  background: transparent; border: none;
+  color: var(--dim); font-family: inherit; font-size: 0.9rem; text-align: left; cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.dd-opt:hover { background: rgba(212, 175, 55, 0.1); color: var(--cream); }
+.dd-opt.on { color: var(--gold-2); }
+.dd-tick { font-size: 0.75rem; font-weight: 700; color: var(--gold-2); }
+html.has-cursor .dd-trigger, html.has-cursor .dd-opt { cursor: none; }
 
 /* submit + success */
 .form-submit { margin-top: 4px; }

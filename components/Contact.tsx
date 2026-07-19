@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Reveal from "./Reveal";
 import { useI18n } from "@/lib/i18n";
@@ -8,11 +8,79 @@ import { useI18n } from "@/lib/i18n";
 const TYPE_KEYS = ["f_type_o1", "f_type_o2", "f_type_o3", "f_type_o4"];
 const BUDGETS = ["₺25K – ₺50K", "₺50K – ₺100K", "₺100K+"];
 
+/* Custom animated dropdown (replaces the native select popup) */
+function Dropdown({
+  options,
+  value,
+  onChange,
+  placeholder,
+}: {
+  options: string[];
+  value: number | null;
+  onChange: (i: number) => void;
+  placeholder: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDoc = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onEsc = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onEsc);
+    return () => {
+      document.removeEventListener("mousedown", onDoc);
+      document.removeEventListener("keydown", onEsc);
+    };
+  }, [open]);
+
+  return (
+    <div className={`dd${open ? " open" : ""}`} ref={ref}>
+      <button type="button" className={`dd-trigger${value === null ? " ph" : ""}`} onClick={() => setOpen((o) => !o)}>
+        <span>{value === null ? placeholder : options[value]}</span>
+        <svg className="dd-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            className="dd-list"
+            initial={{ opacity: 0, y: -8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.98 }}
+            transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {options.map((o, i) => (
+              <li key={o}>
+                <button
+                  type="button"
+                  className={`dd-opt${value === i ? " on" : ""}`}
+                  onClick={() => {
+                    onChange(i);
+                    setOpen(false);
+                  }}
+                >
+                  <span>{o}</span>
+                  {value === i && <span className="dd-tick">✓</span>}
+                </button>
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function Contact() {
   const { t } = useI18n();
   const [sent, setSent] = useState(false);
-  const [type, setType] = useState(0);
-  const [budget, setBudget] = useState(1);
+  const [type, setType] = useState<number | null>(null);
+  const [budget, setBudget] = useState<number | null>(null);
 
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,8 +88,8 @@ export default function Contact() {
     setTimeout(() => {
       (e.target as HTMLFormElement).reset();
       setSent(false);
-      setType(0);
-      setBudget(1);
+      setType(null);
+      setBudget(null);
     }, 4200);
   };
 
@@ -81,35 +149,12 @@ export default function Contact() {
 
               <div className="field full">
                 <label>{t("f_type")}</label>
-                <div className="chips">
-                  {TYPE_KEYS.map((k, i) => (
-                    <button
-                      type="button"
-                      key={k}
-                      className={`chip${type === i ? " on" : ""}`}
-                      onClick={() => setType(i)}
-                    >
-                      {type === i && <span className="chip-tick">✓</span>}
-                      {t(k)}
-                    </button>
-                  ))}
-                </div>
+                <Dropdown options={TYPE_KEYS.map((k) => t(k))} value={type} onChange={setType} placeholder={t("f_type_ph")} />
               </div>
 
               <div className="field full">
                 <label>{t("f_budget")}</label>
-                <div className="chips seg">
-                  {BUDGETS.map((b, i) => (
-                    <button
-                      type="button"
-                      key={b}
-                      className={`chip${budget === i ? " on" : ""}`}
-                      onClick={() => setBudget(i)}
-                    >
-                      {b}
-                    </button>
-                  ))}
-                </div>
+                <Dropdown options={BUDGETS} value={budget} onChange={setBudget} placeholder={t("f_budget_ph")} />
               </div>
 
               <div className="field full">
