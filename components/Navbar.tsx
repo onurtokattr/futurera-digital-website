@@ -69,6 +69,11 @@ export default function Navbar() {
             </a>
           </li>
         ))}
+        <li className="nav-cta-m">
+          <button className="btn btn-primary" onClick={() => go("contact")}>
+            {t("nav_cta")}
+          </button>
+        </li>
       </ul>
 
       <div className="nav-right">
