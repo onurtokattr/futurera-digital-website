@@ -43,11 +43,11 @@ const tr: Dict = {
   clients_eyebrow: "REFERANSLARIMIZ",
   clients_head: "Bize güvenen markalar",
 
-  band_1: "İNŞAAT",
-  band_2: "GAYRİMENKUL",
-  band_3: "LANSMAN",
-  band_4: "3D RENDER",
-  band_5: "SATIŞ",
+  band_1: "STRATEJİ",
+  band_2: "İÇERİK",
+  band_3: "REKLAM",
+  band_4: "OTOMASYON",
+  band_5: "BÜYÜME",
 
   feat_eyebrow: "SEKTÖRE ÖZEL SİSTEM",
   feat_title: "Emlak satışı için kurulmuş pazarlama sistemi",
@@ -240,11 +240,11 @@ const en: Dict = {
   clients_eyebrow: "OUR CLIENTS",
   clients_head: "Trusted by leading brands",
 
-  band_1: "CONSTRUCTION",
-  band_2: "REAL ESTATE",
-  band_3: "LAUNCH",
-  band_4: "3D RENDER",
-  band_5: "SALES",
+  band_1: "STRATEGY",
+  band_2: "CONTENT",
+  band_3: "ADS",
+  band_4: "AUTOMATION",
+  band_5: "GROWTH",
 
   feat_eyebrow: "INDUSTRY-SPECIFIC SYSTEM",
   feat_title: "A marketing system built for real estate sales",
