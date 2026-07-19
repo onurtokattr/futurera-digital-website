@@ -936,8 +936,53 @@ form.panel { position: relative; z-index: 1; background: rgba(5, 6, 26, 0.6); bo
 .field label { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
 .field input, .field select, .field textarea { background: rgba(5, 6, 26, 0.7); border: 1px solid var(--border-2); border-radius: 12px; padding: 13px 15px; color: var(--white); font-family: inherit; font-size: 0.95rem; transition: border-color 0.3s, box-shadow 0.3s; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.14); }
-.field textarea { resize: vertical; min-height: 100px; }
+.field textarea { resize: vertical; min-height: 96px; }
+.field input::placeholder, .field textarea::placeholder { color: rgba(245, 234, 211, 0.28); }
 form.panel .btn { grid-column: 1 / -1; justify-content: center; }
+
+/* panel header */
+.panel-head { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; margin-bottom: 2px; }
+.panel-step { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-2); }
+.panel-head::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(212,175,55,0.4), transparent); }
+
+/* option chips (replaces native selects) */
+.chips { display: flex; flex-wrap: wrap; gap: 9px; }
+.chips.seg { gap: 8px; }
+.chip {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 11px 16px; border-radius: 12px;
+  border: 1px solid var(--border-2);
+  background: rgba(5, 6, 26, 0.6);
+  color: var(--dim);
+  font-family: inherit; font-size: 0.88rem; cursor: pointer;
+  transition: color 0.3s, border-color 0.3s, background 0.3s, transform 0.3s var(--ease);
+}
+.chips.seg .chip { flex: 1; justify-content: center; white-space: nowrap; }
+.chip:hover { color: var(--cream); border-color: rgba(212, 175, 55, 0.4); transform: translateY(-1px); }
+.chip.on {
+  color: #10132f; font-weight: 600; border-color: transparent;
+  background: linear-gradient(135deg, var(--gold), var(--gold-2));
+  box-shadow: 0 8px 22px -10px rgba(212, 175, 55, 0.7);
+}
+.chip-tick { font-size: 0.72rem; font-weight: 700; }
+html.has-cursor .chip { cursor: none; }
+
+/* submit + success */
+.form-submit { margin-top: 4px; }
+.form-success {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 13px; border-radius: 12px;
+  border: 1px solid rgba(55, 214, 122, 0.4);
+  background: rgba(55, 214, 122, 0.1);
+  color: #37d67a; font-size: 0.9rem;
+}
+.form-success .fs-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(55, 214, 122, 0.2); font-size: 0.72rem; flex-shrink: 0;
+}
 .form-note { grid-column: 1 / -1; color: var(--gold-2); font-size: 0.9rem; text-align: center; min-height: 1.1em; }
 
 /* ===== Footer ===== */
