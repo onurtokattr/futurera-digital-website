@@ -83,6 +83,13 @@ export default function Features() {
     return () => clearInterval(id);
   }, []);
 
+  /* — website demo phases: 0 load, 1 ready, 2 form fill, 3 lead toast — */
+  const [web, setWeb] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setWeb((w) => (w + 1) % 4), 2400);
+    return () => clearInterval(id);
+  }, []);
+
   /* — bars / pipe hover — */
   const [pi, setPi] = useState<number | null>(null);
   const [bi, setBi] = useState<number | null>(null);
@@ -350,29 +357,80 @@ export default function Features() {
             <div className="bglow" />
             <h3>{t("fs7_t")}</h3>
             <p>{t("fs7_d")}</p>
-            <div className="browser" aria-hidden>
+            <div className={`browser p${web}`} aria-hidden>
               <div className="bbar">
                 <i />
                 <i />
                 <i />
                 <span>proje-adi.com</span>
+                <em className="bsec">🔒 SSL</em>
               </div>
               <div className="bpage">
                 <div className="bcol">
-                  <div className="skel w85" />
+                  <div className="skel w85 hline" />
                   <div className="skel w60" />
                   <div className="skel w70" />
+                  <div className="bimg">
+                    <i>◨</i>
+                  </div>
                   <div className="bcta">{t("fs7_btn")}</div>
                 </div>
                 <div className="bform">
-                  <div className="skel full" />
-                  <div className="skel full" />
-                  <div className="skel w70" />
-                  <div className="skel gold full" />
+                  <span className="bform-t">{t("fs7_form")}</span>
+                  <div className="finput f1">
+                    <i />
+                  </div>
+                  <div className="finput f2">
+                    <i />
+                  </div>
+                  <div className="finput f3">
+                    <i />
+                  </div>
+                  <div className="fsubmit">{t("fs7_send")}</div>
                 </div>
+                <AnimatePresence>
+                  {web === 3 && (
+                    <motion.div
+                      className="btoast"
+                      initial={{ opacity: 0, y: 16, scale: 0.94 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <b>✓</b>
+                      <div>
+                        <strong>{t("fs7_toast_t")}</strong>
+                        <small>{t("fs7_toast_d")}</small>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
-            <span className="bnote">{t("fs7_note")}</span>
+            <div className="bmetrics">
+              <div className="bmetric">
+                <span className="bring">
+                  <svg viewBox="0 0 36 36">
+                    <circle cx="18" cy="18" r="15.5" fill="none" stroke="rgba(245,234,211,0.1)" strokeWidth="3" />
+                    <circle className="bring-fg" cx="18" cy="18" r="15.5" fill="none" stroke="#37d67a" strokeWidth="3" strokeLinecap="round" strokeDasharray="97.4" strokeDashoffset="2" transform="rotate(-90 18 18)" />
+                  </svg>
+                  <b>98</b>
+                </span>
+                <em>Lighthouse</em>
+              </div>
+              <div className="bmetric">
+                <b className="grad">1.8s</b>
+                <em>{t("fs7_m1")}</em>
+              </div>
+              <div className="bmetric">
+                <b className="grad">%12</b>
+                <em>{t("fs7_m2")}</em>
+              </div>
+              <div className="bmetric">
+                <b className="grad">✓</b>
+                <em>{t("fs7_m3")}</em>
+              </div>
+            </div>
           </Reveal>
         </div>
       </div>
