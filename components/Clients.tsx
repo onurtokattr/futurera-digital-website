@@ -2,31 +2,48 @@
 
 import { useI18n } from "@/lib/i18n";
 
-// Placeholder client names — replace with real reference logos later.
-const CLIENTS = [
-  "Hat Naturel",
-  "Via Vita",
-  "AtaShading",
-  "Simple Deal",
-  "Modüler Fence",
-  "Başak Çit",
-  "Nova Yapı",
-  "Aurora Homes",
+// Real client logos, normalized to uniform cream silhouettes (see scripts/process_logos.py).
+const LOGOS = [
+  "atashading",
+  "hatnaturel",
+  "viavita",
+  "turyapdubai",
+  "delmare",
+  "vartur",
+  "aven",
+  "berr",
+  "mervmix",
+  "bayedi",
+  "palmiye",
+  "electrum",
+  "vema",
+  "basakcit",
+  "simpledeal",
+  "teoman",
+  "bestar",
 ];
+
+// Compact / icon-heavy marks that read small at the base height — bumped up.
+const BIG = new Set(["palmiye", "electrum", "hatnaturel", "teoman", "bestar", "turyapdubai", "delmare"]);
 
 export default function Clients() {
   const { t } = useI18n();
-  const loop = [...CLIENTS, ...CLIENTS];
+  const loop = [...LOGOS, ...LOGOS];
 
   return (
     <section className="clients" id="clients">
-      <div className="clients-head">{t("clients_head")}</div>
+      <div className="clients-head">
+        <span className="eyebrow">
+          <span className="pip" />
+          {t("clients_eyebrow")}
+        </span>
+        <h3>{t("clients_head")}</h3>
+      </div>
       <div className="marquee">
         <div className="marquee-track">
-          {loop.map((c, i) => (
-            <div className="client-logo" key={i}>
-              <span className="shield" />
-              {c}
+          {loop.map((slug, i) => (
+            <div className={`client-logo${BIG.has(slug) ? " big" : ""}`} key={i}>
+              <img src={`/clients/${slug}.png`} alt={slug} loading="eager" />
             </div>
           ))}
         </div>

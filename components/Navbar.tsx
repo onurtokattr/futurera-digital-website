@@ -58,17 +58,14 @@ export default function Navbar() {
   return (
     <nav className={`nav${scrolled ? " scrolled" : ""}${open ? " open" : ""}${hidden && !open ? " hide" : ""}`}>
       <button className="nav-brand" onClick={() => go("hero")}>
-        <Image src="/logo-icon.png" alt="Futurera" width={34} height={34} />
-        <span className="txt">
-          FUTURERA<b>&nbsp;·&nbsp;</b>DIGITAL
-        </span>
+        <Image src="/logo-full.png" alt="Futurera Digital" width={92} height={71} className="brand-logo" priority />
       </button>
 
       <ul className="nav-links">
         {links.map((l) => (
           <li key={l.id}>
             <a className={active === l.id ? "active" : ""} onClick={() => go(l.id)}>
-              {t(l.key)}
+              <span className="nl-txt">{t(l.key)}</span>
             </a>
           </li>
         ))}

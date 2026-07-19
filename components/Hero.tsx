@@ -175,10 +175,10 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.35, duration: 1 }}
       >
-        <span>◦ FUTURERA ORBITAL · SYS ONLINE</span>
-        <span className="hud-center">
+        <span>◦ FUTURERA DIGITAL · SYS ONLINE</span>
+        <button className="hud-center" onClick={() => go("services")} aria-label="Scroll down">
           {t("hero_scroll")} <span className="m" />
-        </span>
+        </button>
         <span>LAT 41.0082° · LON 28.9784° · IST</span>
       </motion.div>
     </section>

@@ -25,7 +25,7 @@ export default function Footer() {
 
         <div className="footer-grid">
           <div className="footer-brand">
-            <Image src="/logo-icon.png" alt="Futurera" width={42} height={42} />
+            <Image src="/logo-full.png" alt="Futurera Digital" width={80} height={62} className="brand-logo" />
             <p>{t("foot_tag")}</p>
             <div className="socials">
               {SOCIALS.map((s) => (

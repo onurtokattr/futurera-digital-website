@@ -32,7 +32,7 @@ export default function Loader() {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.img
-            src="/logo.png"
+            src="/logo-full.png"
             alt="Futurera Digital"
             animate={{ scale: [1, 1.04, 1], opacity: [0.85, 1, 0.85] }}
             transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
