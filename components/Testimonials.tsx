@@ -4,9 +4,9 @@ import Reveal from "./Reveal";
 import { useI18n } from "@/lib/i18n";
 
 const ITEMS = [
-  { q: "rev1", name: "M. Yılmaz", brand: "Hat Naturel" },
-  { q: "rev2", name: "E. Demir", brand: "AtaShading" },
-  { q: "rev3", name: "S. Kaya", brand: "Via Vita" },
+  { q: "rev1", name: "Delmare Collection", role: "rev_r1", logo: "/clients/delmare.png" },
+  { q: "rev2", name: "Vema Tuzla", role: "rev_r2", logo: "/clients/vema.png" },
+  { q: "rev3", name: "Bayedi", role: "rev_r3", logo: "/clients/bayedi.png" },
 ];
 
 export default function Testimonials() {
@@ -35,12 +35,12 @@ export default function Testimonials() {
               <div className="stars">★★★★★</div>
               <p>“{t(it.q)}”</p>
               <div className="who">
-                <div className="av" />
+                <div className="av">
+                  <img src={it.logo} alt={it.name} loading="lazy" />
+                </div>
                 <div>
                   <b>{it.name}</b>
-                  <small>
-                    {it.brand} · {t("rev_role")}
-                  </small>
+                  <small>{t(it.role)}</small>
                 </div>
               </div>
             </Reveal>
