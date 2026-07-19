@@ -6,7 +6,7 @@ import { useI18n } from "@/lib/i18n";
 const PROJECTS = [
   { t: "work_p2_t", c: "work_p2_c", span: "span-6", img: "/work/viavita.jpg", pos: "center" },
   { t: "work_p1_t", c: "work_p1_c", span: "span-6", img: "/work/hatnaturel.jpg", pos: "center" },
-  { t: "work_p3_t", c: "work_p3_c", span: "span-5" },
+  { t: "work_p3_t", c: "work_p3_c", span: "span-5", img: "/work/atashading.jpg", pos: "center" },
   { t: "work_p4_t", c: "work_p4_c", span: "span-7" },
   { t: "work_p5_t", c: "work_p5_c", span: "span-6" },
   { t: "work_p6_t", c: "work_p6_c", span: "span-6" },
