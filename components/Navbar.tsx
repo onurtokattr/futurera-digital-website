@@ -61,6 +61,8 @@ export default function Navbar() {
         <Image src="/logo-full.png" alt="Futurera Digital" width={92} height={71} className="brand-logo" priority />
       </button>
 
+      <div className="nav-scrim" onClick={() => setOpen(false)} />
+
       <ul className="nav-links">
         {links.map((l) => (
           <li key={l.id}>
@@ -69,7 +71,15 @@ export default function Navbar() {
             </a>
           </li>
         ))}
-        <li className="nav-cta-m">
+        <li className="menu-foot">
+          <div className="lang lang-menu">
+            <button className={lang === "tr" ? "on" : ""} onClick={() => setLang("tr")}>
+              TR
+            </button>
+            <button className={lang === "en" ? "on" : ""} onClick={() => setLang("en")}>
+              EN
+            </button>
+          </div>
           <button className="btn btn-primary" onClick={() => go("contact")}>
             {t("nav_cta")}
           </button>
@@ -77,7 +87,7 @@ export default function Navbar() {
       </ul>
 
       <div className="nav-right">
-        <div className="lang">
+        <div className="lang lang-desk">
           <button className={lang === "tr" ? "on" : ""} onClick={() => setLang("tr")}>
             TR
           </button>
@@ -85,7 +95,7 @@ export default function Navbar() {
             EN
           </button>
         </div>
-        <button className="btn btn-primary" onClick={() => go("contact")} style={{ padding: "10px 20px", fontSize: "0.82rem" }}>
+        <button className="btn btn-primary nav-cta-desk" onClick={() => go("contact")} style={{ padding: "10px 20px", fontSize: "0.82rem" }}>
           {t("nav_cta")}
         </button>
         <button className="burger" aria-label="Menu" onClick={() => setOpen((o) => !o)}>
