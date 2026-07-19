@@ -4,10 +4,8 @@ import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
 
 const SOCIALS = [
-  { name: "Instagram", href: "https://instagram.com" },
-  { name: "LinkedIn", href: "https://linkedin.com" },
-  { name: "X", href: "https://x.com" },
-  { name: "Behance", href: "https://behance.net" },
+  { name: "Instagram", href: "https://www.instagram.com/futurera.digital/" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/futurera-digital" },
 ];
 
 export default function Footer() {
