@@ -76,6 +76,13 @@ export default function Features() {
   }, []);
   const visibleLeads = [0, 1, 2].map((o) => LEAD_POOL[(leadIdx + o) % LEAD_POOL.length]);
 
+  /* — reels scene cycle — */
+  const [reel, setReel] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setReel((r) => (r + 1) % 3), 3600);
+    return () => clearInterval(id);
+  }, []);
+
   /* — bars / pipe hover — */
   const [pi, setPi] = useState<number | null>(null);
   const [bi, setBi] = useState<number | null>(null);
@@ -280,18 +287,60 @@ export default function Features() {
               <span className="bbadge">{t("fs6_badge")}</span>
             </div>
             <p>{t("fs6_d")}</p>
-            <div className="thumbs" aria-hidden>
-              <div className="thumb">
-                <i>▶</i>
-                <em>0:38</em>
+            <div className="reelbox" aria-hidden>
+              <div className="reel">
+                <div className="reel-progress">
+                  {[0, 1, 2].map((i) => (
+                    <i key={i} className={i === reel ? "on" : i < reel ? "done" : ""} />
+                  ))}
+                </div>
+                <div className={`reel-scene s${reel}`}>
+                  <span className="reel-tag" key={reel}>{t(`fs6_v${reel + 1}`)}</span>
+                  <div className="reel-skyline" />
+                </div>
+                <div className="reel-side">
+                  <div className="reel-act">
+                    <i className="rheart">♥</i>
+                    <em>{(12.4 + reel * 3.1).toFixed(1)}K</em>
+                  </div>
+                  <div className="reel-act">
+                    <i>💬</i>
+                    <em>{342 + reel * 120}</em>
+                  </div>
+                  <div className="reel-act">
+                    <i>↗</i>
+                    <em>{86 + reel * 40}</em>
+                  </div>
+                </div>
+                <span className="fheart h1">♥</span>
+                <span className="fheart h2">♥</span>
+                <span className="fheart h3">♥</span>
+                <div className="reel-bottom">
+                  <b>@futurera.digital</b>
+                  <div className="reel-music">
+                    <span className="eq">
+                      <i />
+                      <i />
+                      <i />
+                      <i />
+                    </span>
+                    <em>{t("fs6_music")}</em>
+                  </div>
+                </div>
               </div>
-              <div className="thumb t2">
-                <i>▶</i>
-                <em>1:12</em>
-              </div>
-              <div className="thumb t3">
-                <i>▶</i>
-                <em>0:52</em>
+              <div className="reel-stats">
+                <div className="rstat">
+                  <b className="grad">1.2M+</b>
+                  <span>{t("fs6_m1")}</span>
+                </div>
+                <div className="rstat">
+                  <b className="grad">%8.4</b>
+                  <span>{t("fs6_m2")}</span>
+                </div>
+                <div className="rstat">
+                  <b className="grad">40+</b>
+                  <span>{t("fs6_m3")}</span>
+                </div>
               </div>
             </div>
           </Reveal>
