@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 import Cursor from "@/components/Cursor";
-import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Clients from "@/components/Clients";
@@ -24,7 +23,6 @@ export default function Home() {
       <div className="veil" />
       <div className="grain-fx" />
       <Cursor />
-      <Loader />
       <Navbar />
       <main>
         <Hero />
