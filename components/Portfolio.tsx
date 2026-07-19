@@ -8,6 +8,7 @@ const PROJECTS = [
   { t: "work_p1_t", c: "work_p1_c", span: "span-6", img: "/work/hatnaturel.jpg", pos: "center" },
   { t: "work_p3_t", c: "work_p3_c", span: "span-5", img: "/work/atashading.jpg", pos: "center" },
   { t: "work_p4_t", c: "work_p4_c", span: "span-7" },
+  { t: "work_merv_t", c: "work_merv_c", span: "span-12", img: "/work/mervmix.jpg", pos: "center", cls: "feature-fit" },
   { t: "work_p5_t", c: "work_p5_c", span: "span-6" },
   { t: "work_p6_t", c: "work_p6_c", span: "span-6" },
 ];
@@ -69,7 +70,7 @@ export default function Portfolio() {
           </Reveal>
 
           {PROJECTS.map((p, i) => (
-            <Reveal key={i} delay={(i % 2) * 0.08} className={`proj ${p.span}${i % 3 === 0 ? " tall" : ""}`}>
+            <Reveal key={i} delay={(i % 2) * 0.08} className={`proj ${p.span}${p.cls ? ` ${p.cls}` : i % 3 === 0 ? " tall" : ""}`}>
               {p.img ? (
                 <img className="proj-photo" src={p.img} alt={t(p.t)} loading="lazy" style={{ objectPosition: p.pos }} />
               ) : (

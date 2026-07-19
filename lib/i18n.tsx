@@ -167,6 +167,8 @@ const tr: Dict = {
   work_p5_c: "Mimari Sistem · Ürün Pazarlaması",
   work_p6_t: "Başak Çit",
   work_p6_c: "İnşaat Ürünleri · Bayi Ağı Pazarlaması",
+  work_merv_t: "MervMix",
+  work_merv_c: "Doğal Takviye Markası · Ürün İçeriği & Sosyal Medya",
 
   about_eyebrow: "BİZ KİMİZ",
   about_title: "İnşaat sektörüne odaklı niş pazarlama ekibi",
@@ -377,6 +379,8 @@ const en: Dict = {
   work_p5_c: "Architectural System · Product Marketing",
   work_p6_t: "Başak Çit",
   work_p6_c: "Construction Products · Dealer Network Marketing",
+  work_merv_t: "MervMix",
+  work_merv_c: "Natural Supplement Brand · Product Content & Social Media",
 
   about_eyebrow: "WHO WE ARE",
   about_title: "A niche team built for construction marketing",
