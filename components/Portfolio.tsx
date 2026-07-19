@@ -51,7 +51,7 @@ export default function Portfolio() {
           </Reveal>
 
           {/* Featured — Vema Tuzla */}
-          <Reveal className="proj span-12 feature">
+          <Reveal className="proj span-12 feature feature-fit">
             <img className="proj-photo" src="/work/vema.jpg" alt="Vema Tuzla" loading="lazy" />
             <div className="proj-meta">
               <div>
