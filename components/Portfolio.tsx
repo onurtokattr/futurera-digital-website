@@ -4,7 +4,7 @@ import Reveal from "./Reveal";
 import { useI18n } from "@/lib/i18n";
 
 const PROJECTS = [
-  { t: "work_p2_t", c: "work_p2_c", span: "span-6" },
+  { t: "work_p2_t", c: "work_p2_c", span: "span-6", img: "/work/viavita.jpg", pos: "center" },
   { t: "work_p1_t", c: "work_p1_c", span: "span-6" },
   { t: "work_p3_t", c: "work_p3_c", span: "span-5" },
   { t: "work_p4_t", c: "work_p4_c", span: "span-7" },
@@ -52,7 +52,11 @@ export default function Portfolio() {
 
           {PROJECTS.map((p, i) => (
             <Reveal key={i} delay={(i % 2) * 0.08} className={`proj ${p.span}${i % 3 === 0 ? " tall" : ""}`}>
-              <div className="proj-img">GÖRSEL / 3D</div>
+              {p.img ? (
+                <img className="proj-photo" src={p.img} alt={t(p.t)} loading="lazy" style={{ objectPosition: p.pos }} />
+              ) : (
+                <div className="proj-img">GÖRSEL / 3D</div>
+              )}
               <div className="proj-meta">
                 <div>
                   <h3>{t(p.t)}</h3>
