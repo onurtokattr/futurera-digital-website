@@ -163,7 +163,7 @@ export default function Contact() {
               </div>
 
               <button type="submit" className="btn btn-primary form-submit">
-                🚀 {t("f_submit")}
+                {t("f_submit")}
               </button>
 
               <AnimatePresence>

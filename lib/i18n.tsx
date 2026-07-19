@@ -226,7 +226,7 @@ const tr: Dict = {
   f_budget: "Bütçe Aralığı",
   f_details: "Proje Detayı",
   f_details_ph: "Proje tipini, konumunu ve daire/ünite sayısını bize anlat...",
-  f_submit: "Projeni Fırlat",
+  f_submit: "Gönder",
   f_success: "Talebin ulaştı! En kısa sürede sana döneceğiz.",
 
   foot_tag: "İnşaat ve gayrimenkul projelerini satışa taşıyan niş dijital pazarlama ajansı.",
@@ -456,7 +456,7 @@ const en: Dict = {
   f_budget: "Budget Range",
   f_details: "Project Details",
   f_details_ph: "Tell us the project type, location and number of units...",
-  f_submit: "Launch Project",
+  f_submit: "Send",
   f_success: "Your request has landed! We'll get back to you shortly.",
 
   foot_tag: "The niche digital marketing agency turning construction and real estate projects into sold-out launches.",
